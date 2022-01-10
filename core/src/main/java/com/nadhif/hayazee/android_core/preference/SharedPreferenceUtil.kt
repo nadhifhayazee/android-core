@@ -28,15 +28,51 @@ class SharedPreferenceUtil(context: Context) {
 
     fun <T> saveObject(key: String, obj: T) {
         val editor = pref.edit()
-        editor.putString(key, gson.toJson(obj))
+
+        when (obj) {
+            is String -> {
+                editor.putString(key, obj)
+            }
+            is Int -> {
+                editor.putInt(key, obj)
+            }
+            is Boolean -> {
+                editor.putBoolean(key, obj)
+            }
+            is Float -> {
+                editor.putFloat(key, obj)
+            }
+            is Long -> {
+                editor.putLong(key, obj)
+            }
+            else -> {
+                editor.putString(key, gson.toJson(obj))
+            }
+        }
+
         editor.apply()
     }
 
-    fun <T> getObject(key: String, mClass: Class<T>): T {
-        return gson.fromJson(pref.getString(key, ""), mClass)
-    }
-
-    fun getPrefEditor(): SharedPreferences.Editor {
-        return pref.edit()
+    fun <T> getObject(key: String, mClass: Class<T>): T? {
+        return when (mClass) {
+            String::class.java -> {
+               pref.getString(key,"") as T
+            }
+            Int::class.java -> {
+               pref.getInt(key,0) as T
+            }
+            Boolean::class.java -> {
+                pref.getBoolean(key,false) as T
+            }
+            Float::class.java -> {
+                pref.getFloat(key,0f) as T
+            }
+            Long::class.java -> {
+                pref.getLong(key, 0L) as T
+            }
+            else -> {
+                gson.fromJson(pref.getString(key, ""), mClass)
+            }
+        }
     }
 }
