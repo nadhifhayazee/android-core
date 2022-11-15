@@ -1,6 +1,9 @@
 package com.nadhif.hayazee.android_core.networking
 
-import okhttp3.*
+import okhttp3.Authenticator
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 

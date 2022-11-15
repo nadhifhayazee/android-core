@@ -56,16 +56,16 @@ class SharedPreferenceUtil(context: Context) {
     fun <T> getObject(key: String, mClass: Class<T>): T? {
         return when (mClass) {
             String::class.java -> {
-               pref.getString(key,"") as T
+                pref.getString(key, "") as T
             }
             Int::class.java -> {
-               pref.getInt(key,0) as T
+                pref.getInt(key, 0) as T
             }
             Boolean::class.java -> {
-                pref.getBoolean(key,false) as T
+                pref.getBoolean(key, false) as T
             }
             Float::class.java -> {
-                pref.getFloat(key,0f) as T
+                pref.getFloat(key, 0f) as T
             }
             Long::class.java -> {
                 pref.getLong(key, 0L) as T

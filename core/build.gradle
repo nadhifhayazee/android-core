@@ -59,6 +59,7 @@ dependencies {
 
     api "com.squareup.retrofit2:retrofit:$retrofit2_version"
     api "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
-    api "com.squareup.retrofit2:converter-gson:$gson_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+
     implementation "androidx.security:security-crypto:$security_crypto_version"
 }
